@@ -30,7 +30,7 @@ export const LoginContainer = styled.div`
 
   padding: 2.25rem;
 
-  background: #e2dadb;
+  background: #f3f3f3;
   border-radius: 0.625rem;
   box-shadow: 0.625rem 0.625rem 0.25rem rgba(0, 0, 0, 0.25);
 
