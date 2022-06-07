@@ -8,7 +8,6 @@ import {
   HttpLink,
 } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
-import { WebSocketLink } from '@apollo/client/link/ws';
 import Routes from './routes';
 import Global from './styles/global';
 
@@ -25,18 +24,6 @@ const httpLink = new HttpLink({
       : 'https://graphql.precato.com.br/graphql',
 });
 
-const wsLink = new WebSocketLink({
-  uri:
-    process.env.REACT_APP_API_URL === 'dev'
-      ? 'ws://localhost:5000/graphql'
-      : process.env.REACT_APP_API_URL === 'hom'
-      ? 'wss://graphql-hom.precato.com.br/graphql'
-      : 'wss://graphql.precato.com.br/graphql',
-  options: {
-    reconnect: true,
-  },
-});
-
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
@@ -45,7 +32,7 @@ const splitLink = split(
       definition.operation === 'subscription'
     );
   },
-  wsLink,
+
   httpLink,
 );
 

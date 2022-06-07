@@ -28,8 +28,11 @@ import {
 } from './styles';
 import api from '../../services/api';
 
-interface IForgotPasswordFormData {
+interface ICreateAccount {
   email: string;
+  name: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 export const CreateAccount: React.FC = () => {
@@ -39,25 +42,26 @@ export const CreateAccount: React.FC = () => {
 
   const history = useHistory();
 
-  const emailSuccess = useCallback(() => {
+  const creationSuccess = useCallback(() => {
     Swal.fire(
-      'Atenção',
-      'Enviamos um e-mail para recuperação da senha, por favor verifique a sua caixa de entrada.',
+      'Sua conta foi criada',
+      'Informamos que sua conta foi criada com sucesso!',
       'info',
     );
   }, []);
 
-  const emailError = useCallback(() => {
+  const creationError = useCallback(() => {
     Swal.fire(
       'Erro',
-      'Ocorreu um erro ao enviar o e-mail, por favor tente novamente.',
+      'Ocorreu um erro ao criar a conta, por favor tente novamente!',
       'error',
     );
   }, []);
 
   const handleSubmit = useCallback(
-    async (data: IForgotPasswordFormData) => {
+    async (data: ICreateAccount) => {
       try {
+        console.log(data);
         setLoading(true);
 
         formRef.current?.setErrors({});
@@ -66,21 +70,35 @@ export const CreateAccount: React.FC = () => {
           email: Yup.string()
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
+          name: Yup.string()
+            .required('Nome obrigatório')
+            .email('Digite um nome válido'),
+          password: Yup.string()
+            .required('Senha obrigatória')
+            .email('Digite uma senha válida'),
+          passwordConfirmation: Yup.string()
+            .required('Confirmação de senha obrigatória')
+            .email('Digite a confirmação da senha'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/forgot_password/messages', {
+        const apiR = await api.post('/signup', {
           email: data.email,
+          name: data.name,
+          password: data.password,
+          passwordConfirmation: data.passwordConfirmation,
         });
 
-        emailSuccess();
+        console.log(apiR.data);
+
+        creationSuccess();
 
         history.push('/');
       } catch (err) {
-        emailError();
+        creationError();
 
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -93,7 +111,7 @@ export const CreateAccount: React.FC = () => {
         setLoading(false);
       }
     },
-    [history, emailError, emailSuccess],
+    [history, creationSuccess, creationError],
   );
 
   return (
@@ -133,9 +151,18 @@ export const CreateAccount: React.FC = () => {
               iconError={PasswordErrorIcon}
             />
 
+            <Label htmlFor="passwordConfirmation">Confirmação de Senha</Label>
+            <Input
+              id="passwordConfirmation"
+              name="passwordConfirmation"
+              type="password"
+              icon={PasswordIcon}
+              iconError={PasswordErrorIcon}
+            />
+
             <ButtonContainer>
               <Button type="submit" loading={loading}>
-                RECUPERAR
+                Criar
               </Button>
             </ButtonContainer>
 

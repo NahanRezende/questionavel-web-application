@@ -31,7 +31,7 @@ export const LoginContainer = styled.div`
 
   flex-wrap: wrap;
   width: 30rem;
-  height: 30rem;
+  height: 40rem;
 
   padding: 2.25rem;
 
@@ -85,7 +85,6 @@ export const Title = styled.text`
   font-weight: 500;
   font-size: 1.125rem;
   color: #494949;
-  /* margin-top: 1.375rem; */
 `;
 
 export const Separator = styled.div`

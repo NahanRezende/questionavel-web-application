@@ -1,0 +1,16 @@
+{
+    "extends": "standard-with-typescript",
+    "parserOptions": {
+        "files": "*.ts",
+        "project": "./tsconfig.eslint.json"
+    },
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/space-before-function-paren": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/consistent-type-definitions": "off"
+    }
+}
