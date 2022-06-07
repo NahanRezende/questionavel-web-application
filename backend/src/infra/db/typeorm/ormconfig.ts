@@ -11,7 +11,7 @@ export default new DataSource(
     port: 5432,
     username: 'postgres',
     password: 'postgres',
-    database: 'postgres',
+    database: 'trabalhobd',
     entities: ['src/infra/db/typeorm/entities/*.entity.ts'],
     migrations: ['src/infra/db/typeorm/migrations/*.ts']
   }
