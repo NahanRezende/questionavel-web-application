@@ -18,14 +18,14 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { user } = useAuth();
+  const { isLogged } = useAuth();
 
   return (
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
-        return isPrivate === !!user ? (
-          user ? (
+        return isPrivate === !!isLogged ? (
+          isLogged ? (
             <Main Component={Component} />
           ) : (
             <Component />

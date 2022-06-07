@@ -5,7 +5,6 @@ import { FormHandles } from '@unform/core';
 import { useCallback, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import getValidationErrors from '../../utils/getValidateErrors';
 
@@ -32,14 +31,6 @@ import {
 interface ISignInFormData {
   email: string;
   password: string;
-}
-
-interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  token: string;
-  first_access: boolean;
 }
 
 export const Login: React.FC = () => {
@@ -72,18 +63,7 @@ export const Login: React.FC = () => {
           password: data.password,
         });
 
-        const user: IUser = await api.get(`users/email/${data.email}`);
-
-        if (!user.first_access) {
-          history.push({
-            pathname: '/login/new-password',
-            state: {
-              old_password: data.password,
-            },
-          });
-        } else {
-          history.push('/dashboard');
-        }
+        history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
