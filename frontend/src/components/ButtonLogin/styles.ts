@@ -28,7 +28,6 @@ export const Button = styled.button`
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
   text-align: center;
 `;
 

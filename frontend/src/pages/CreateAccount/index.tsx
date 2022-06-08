@@ -61,7 +61,6 @@ export const CreateAccount: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: ICreateAccount) => {
       try {
-        console.log(data);
         setLoading(true);
 
         formRef.current?.setErrors({});
@@ -70,15 +69,11 @@ export const CreateAccount: React.FC = () => {
           email: Yup.string()
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          name: Yup.string()
-            .required('Nome obrigatório')
-            .email('Digite um nome válido'),
-          password: Yup.string()
-            .required('Senha obrigatória')
-            .email('Digite uma senha válida'),
-          passwordConfirmation: Yup.string()
-            .required('Confirmação de senha obrigatória')
-            .email('Digite a confirmação da senha'),
+          name: Yup.string().required('Nome obrigatório'),
+          password: Yup.string().required('Senha obrigatória'),
+          passwordConfirmation: Yup.string().required(
+            'Confirmação de senha obrigatória',
+          ),
         });
 
         await schema.validate(data, {
