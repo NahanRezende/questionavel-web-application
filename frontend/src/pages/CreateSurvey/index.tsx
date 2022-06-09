@@ -1,42 +1,131 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import {
+  AiOutlineCheckSquare,
+  AiOutlineMinusSquare,
+  AiOutlinePlusSquare,
+} from 'react-icons/all';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import { useHistory } from 'react-router-dom';
 import {
   Container,
   QuestionTitle,
   Title,
-  TitleContainer,
-  Input,
-  QuestionContainer,
-  Question,
-  AnswerButtonContainer,
-  AnswerButton,
-  AddAnswer,
-  AddAnswerButton,
+  InsideContainer,
+  AddButton,
+  Label,
+  StyledInput,
 } from './styles';
+import api from '../../services/api';
 
-import AddImg from '../../assets/add_icon.png';
+interface IAnswer {
+  domId?: number;
+  answer: string;
+}
+
+interface ISurvey {
+  question: string;
+  answers: IAnswer[];
+}
 
 export const CreateSurvey: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
+
+  const [survey, setSurvey] = useState<ISurvey>({
+    question: '',
+    answers: [
+      {
+        domId: 0,
+        answer: '',
+      },
+      {
+        domId: 1,
+        answer: '',
+      },
+    ],
+  });
+
+  const handleAddAnswer = () => {
+    const lastAnswer = survey.answers.slice(-1)[0];
+
+    const newSurveys: ISurvey = {
+      ...survey,
+      answers: [...survey.answers, { domId: lastAnswer.domId + 1, answer: '' }],
+    };
+
+    setSurvey(newSurveys);
+  };
+
+  const handleRemoveAnswer = () => {
+    if (survey.answers.length <= 2) {
+      return;
+    }
+
+    setSurvey({
+      ...survey,
+      answers: survey.answers.slice(0, survey.answers.length - 1),
+    });
+  };
+
+  const handleSubmit = useCallback(
+    async (data: any) => {
+      const arrayOfData = Object.values(data);
+      const fmt: ISurvey = {
+        question: arrayOfData.pop() as string,
+        answers: arrayOfData.map(a => ({
+          answer: a as string,
+        })),
+      };
+
+      await api.post('/surveys', fmt);
+
+      history.push('/dashboard');
+    },
+    [history],
+  );
+
   return (
     <Container>
-      <Title>Crie sua Pesquisa</Title>
-      <TitleContainer>
-        <QuestionTitle>Digite aqui o nome da sua pesquisa:</QuestionTitle>
-        <Input type="text" placeholder=" O nome da sua pesquisa!" />
-      </TitleContainer>
-      <QuestionContainer>
-        <Question>Digite aqui a sua pergunta:</Question>
-        <Input type="text" placeholder=" Sua pergunta!" />
-        <AnswerButtonContainer>
-          <AnswerButton />
-          <AnswerButton />
-          <AnswerButton />
-          <AnswerButton />
-          <AnswerButton />
-          <AddAnswerButton>
-            <AddAnswer src={AddImg} />
-          </AddAnswerButton>
-        </AnswerButtonContainer>
-      </QuestionContainer>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Title>Criar</Title>
+        <InsideContainer>
+          <QuestionTitle>Título do Survey</QuestionTitle>
+          <Label htmlFor="title">Título</Label>
+          <StyledInput
+            type="text"
+            placeholder="Título"
+            id="title"
+            name="title"
+          />
+        </InsideContainer>
+        <InsideContainer>
+          <QuestionTitle>Respostas</QuestionTitle>
+          {survey.answers.map((answer, index) => (
+            <>
+              <Label htmlFor={`${index}`}>Resposta</Label>
+              <StyledInput
+                type="text"
+                id={`${index}`}
+                name={`${index}`}
+                placeholder={`Resposta #${index + 1}`}
+                key={answer.domId}
+              />
+            </>
+          ))}
+          <div>
+            <AddButton onClick={handleAddAnswer}>
+              <AiOutlinePlusSquare />
+            </AddButton>
+            <AddButton onClick={handleRemoveAnswer}>
+              <AiOutlineMinusSquare />
+            </AddButton>
+            <AddButton type="submit">
+              <AiOutlineCheckSquare />
+            </AddButton>
+          </div>
+        </InsideContainer>
+      </Form>
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Input from '../../components/Input';
 
 export const Container = styled.div`
   height: 100vh;
@@ -10,18 +11,31 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const TitleContainer = styled.div`
+export const InsideContainer = styled.div`
   margin-top: 2rem;
+
+  width: 50vw;
+
   background: #f3f3f3;
-  height: 10rem;
-  width: 50rem;
+  padding: 16px 20px;
   border: solid;
   border-width: 0.1rem;
   border-color: #4682b4;
-  border-radius: 2rem;
+  border-radius: 6px;
 
   display: flex;
   flex-direction: column;
+`;
+
+export const AddButton = styled.button`
+  align-self: flex-start;
+  svg {
+    width: 64px;
+    height: 64px;
+  }
+  background: none;
+  border: none;
+  cursor: pointer;
 `;
 
 export const QuestionTitle = styled.p`
@@ -30,9 +44,7 @@ export const QuestionTitle = styled.p`
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
   color: #4682b4;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
 `;
 
 export const Title = styled.h1`
@@ -44,41 +56,17 @@ export const Title = styled.h1`
   margin-top: 5rem;
 `;
 
-export const Input = styled.input`
-  background: #f1f1f1;
-  height: 3rem;
-  width: 47rem;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  margin-top: 2rem;
-  border-radius: 1rem;
-  border-width: 0.1rem;
-  border-color: #4682b4;
+export const StyledInput = styled(Input)`
+  background: white;
+  width: 100% !important;
 `;
 
-export const QuestionContainer = styled.div`
-  margin-top: 2rem;
-  background: #f3f3f3;
-  height: 14rem;
-  width: 50rem;
-  border: solid;
-  border-width: 0.1rem;
-  border-color: #4682b4;
-  border-radius: 2rem;
-
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Question = styled.p`
-  font-size: 1.5rem;
-  font-weight: 800;
-  font-family: 'Courier New', Courier, monospace;
-  text-align: center;
+export const Label = styled.label`
   color: #4682b4;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  margin-top: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: start;
 `;
 
 export const AnswerButtonContainer = styled.div`

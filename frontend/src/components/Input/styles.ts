@@ -12,13 +12,10 @@ interface ContainerErrorsProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: transparent;
-
   border-radius: 0.25rem;
 
   border-bottom: 0.15rem solid transparent;
   padding: 0.75rem 1rem;
-  width: 26rem;
   height: 3rem;
 
   display: flex;
@@ -76,7 +73,7 @@ export const Container = styled.div<ContainerProps>`
     }
   }
   svg {
-    margin-left: 0rem;
+    margin-left: 0;
     margin-right: 0.88rem;
   }
 
