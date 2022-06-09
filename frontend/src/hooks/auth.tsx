@@ -1,8 +1,10 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import api from '../services/api';
 
 interface AuthState {
   token: string;
+  accountId: string;
 }
 
 interface SignInCredentials {
@@ -23,11 +25,12 @@ export const AuthContext = createContext<AuthContextData>(
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@Survey:token');
+    const accountId = localStorage.getItem('@Survey:accountId');
 
     if (token) {
       api.defaults.headers['x-access-token'] = token;
 
-      return { token };
+      return { accountId, token };
     }
 
     return {} as AuthState;
@@ -45,15 +48,19 @@ export const AuthProvider: React.FC = ({ children }) => {
 
           api.defaults.headers['x-access-token'] = accessToken;
 
-          setData({ token: accessToken });
+          const payload = jwt.decode(accessToken) as JwtPayload;
+
+          setData({ accountId: payload.id, token: accessToken });
 
           localStorage.setItem('@Survey:token', accessToken);
+          localStorage.setItem('@Survey:accountId', payload.id);
         }
       });
   }, []);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@Survey:token');
+    localStorage.removeItem('@Survey:accountId');
 
     setData({} as AuthState);
   }, []);
