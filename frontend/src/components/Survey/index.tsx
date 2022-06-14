@@ -111,7 +111,7 @@ const Survey = ({ survey }: Props): JSX.Element => {
                 <div>
                   <strong>{r.answer}</strong>
                   <p>{r.count} resposta(s)</p>
-                  <p>{r.percent * 100}%</p>
+                  <p>{(r.percent * 100).toFixed(2)}%</p>
                 </div>
               </Result>
             ))}
