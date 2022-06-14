@@ -23,7 +23,7 @@ export default class SurveyTypeormRepository implements AddSurveyRepository, Loa
   async loadAll (accountId: string): Promise<SurveyModel[] | null> {
     const repository = await TypeormHelper.getRepository(SurveyEntity)
 
-    const surveys = await repository.find({ relations: ['surveyResults', 'account'] })
+    const surveys = await repository.find({ relations: ['surveyResults', 'account', 'answers'] })
 
     return surveys.map(s => ({
       ...s,
@@ -46,7 +46,7 @@ export default class SurveyTypeormRepository implements AddSurveyRepository, Loa
   async delete (id: string): Promise<void> {
     const repository = await TypeormHelper.getRepository(SurveyEntity)
 
-    const survey = await repository.findOne({ where: { id }, relations: ['answers'] })
+    const survey = await repository.findOne({ where: { id }, relations: ['answers', 'surveyResults'] })
 
     if (!survey) {
       throw new Error('Index not found')

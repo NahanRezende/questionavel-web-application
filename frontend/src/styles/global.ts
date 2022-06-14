@@ -51,6 +51,15 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    background: #80deea;
+    color: #fafafa;
+
+    :hover {
+      background: #4dd0e1;
+    }
   }
 
   a {

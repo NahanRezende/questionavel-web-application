@@ -31,9 +31,15 @@ export const ListSurveys: React.FunctionComponent = () => {
 
   return (
     <Container>
-      <InsideContainer>
-        {surveys && surveys.map(s => <Survey survey={s} />)}
-      </InsideContainer>
+      {surveys ? (
+        <InsideContainer>
+          {surveys && surveys.map(s => <Survey survey={s} />)}
+        </InsideContainer>
+      ) : (
+        <InsideContainer>
+          <p>Não há surveys ainda</p>
+        </InsideContainer>
+      )}
     </Container>
   );
 };

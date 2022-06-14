@@ -22,7 +22,9 @@ export class AccountTypeormRepository implements AddAccountRepository,
   async loadByEmail (email: string): Promise<AccountModel | null> {
     const repository = await TypeormHelper.getRepository(AccountEntity)
 
-    return await repository.findOneBy({ email })
+    const account = await repository.findOneBy({ email })
+
+    return account
   }
 
   async update (id: string, token: string): Promise<void> {

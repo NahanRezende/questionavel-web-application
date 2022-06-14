@@ -35,7 +35,7 @@ export const Description = styled.p`
 
 export const ButtonContainer = styled.div`
   margin-top: 0.8rem;
-  width: 30rem;
+  width: 40rem;
   display: flex;
   flex-direction: row;
   align-items: center;

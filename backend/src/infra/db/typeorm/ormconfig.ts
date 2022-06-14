@@ -10,7 +10,7 @@ export default new DataSource(
     host: 'localhost',
     port: 5432,
     username: 'postgres',
-    password: 'dontuploadpasswordstogithub',
+    password: 'postgres',
     database: 'surveys',
     entities: ['src/infra/db/typeorm/entities/*.entity.ts'],
     migrations: ['src/infra/db/typeorm/migrations/*.ts']

@@ -1,9 +1,17 @@
 export const surveysPath = {
   get: {
+    parameters: [{
+      in: 'header',
+      name: 'x-access-token',
+      required: true,
+      schema: {
+        type: 'string'
+      }
+    }],
     security: [{
       apiKeyAuth: []
     }],
-    tags: ['Index'],
+    tags: ['Survey'],
     summary: 'API for list all surveys',
     responses: {
       200: {
@@ -28,10 +36,18 @@ export const surveysPath = {
     }
   },
   post: {
+    parameters: [{
+      in: 'header',
+      name: 'x-access-token',
+      required: true,
+      schema: {
+        type: 'string'
+      }
+    }],
     security: [{
       apiKeyAuth: []
     }],
-    tags: ['Index'],
+    tags: ['Survey'],
     summary: 'API for create a survey',
     requestBody: {
       content: {

@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import { Container, Results, Result } from './styles';
+import { useHistory } from 'react-router-dom';
+import { Container, Results, Result, TitleContainer } from './styles';
 import api from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 type Answer = {
   answer: string;
@@ -37,12 +39,21 @@ type Results = {
 
 const Survey = ({ survey }: Props): JSX.Element => {
   const [results, setResults] = useState<Results>();
+  const [answered, setAnswered] = useState<boolean>(survey.didAnswer);
+
+  const { accountId } = useAuth();
+  const history = useHistory();
+
+  const handleDelete = useCallback(async () => {
+    await api.delete(`surveys/${survey.id}`);
+
+    history.push('/dashboard');
+  }, [history, survey.id]);
 
   useEffect(() => {
     api
       .get(`surveys/${survey.id}/results`)
       .then(response => {
-        console.log(response.data);
         setResults(response.data);
       })
       .catch(e => console.error(e));
@@ -51,30 +62,69 @@ const Survey = ({ survey }: Props): JSX.Element => {
   const handleAnswer = useCallback(
     async (a: Answer) => {
       await api.put(`/surveys/${survey.id}/results`, { answer: a.answer });
+      setAnswered(true);
+      window.location.reload();
     },
     [survey.id],
   );
 
+  const handleEdit = () => {
+    setAnswered(false);
+  };
+
+  function getDefaultValue(): string {
+    if (!survey || survey.surveyResults) {
+      return '';
+    }
+
+    const target = survey.surveyResults.find(sr => sr.accountId === accountId);
+
+    if (target) {
+      return target.answer;
+    }
+
+    return '';
+  }
+
   return (
     <Container>
-      <h1>{survey.question}</h1>
-      {survey.didAnswer ? (
+      <TitleContainer>
+        <h1>{survey.question}</h1>
+        <div>
+          {accountId === survey.accountId && (
+            <button type="button" onClick={handleDelete}>
+              deletar
+            </button>
+          )}
+          {answered && (
+            <button type="button" onClick={handleEdit}>
+              editar
+            </button>
+          )}
+        </div>
+      </TitleContainer>
+      {answered ? (
         <Results>
           {results &&
             results.answers.map(r => (
               <Result>
-                <h2>{r.answer}</h2>
-                <p>{r.count} resposta(s)</p>
-                <p>{r.percent}%</p>
+                <div>
+                  <strong>{r.answer}</strong>
+                  <p>{r.count} resposta(s)</p>
+                  <p>{(r.percent * 100).toFixed(2)}%</p>
+                </div>
               </Result>
             ))}
         </Results>
       ) : (
         survey.answers.map(a => (
-          <RadioGroup onChange={() => handleAnswer(a)}>
+          <RadioGroup
+            onChange={() => handleAnswer(a)}
+            defaultValue={getDefaultValue()}
+          >
             <FormControlLabel
               key={a.answer}
-              control={<Radio />}
+              control={<Radio color="primary" />}
               label={a.answer}
               value={a.answer}
             />

@@ -19,6 +19,7 @@ import { surveyResultPath } from './paths/survey-result-path'
 import { saveSurveyParamsSchema } from './schemas/save-survey-params-schema'
 import { surveyResultSchema } from './schemas/survey-result-schema'
 import { surveyResultAnswerSchema } from './schemas/survey-result-answer-schema'
+import { deleteSurveysPath } from './paths/delete-surveys-path'
 
 export default {
   openapi: '3.0.0',
@@ -37,11 +38,12 @@ export default {
   tags: [{
     name: 'Login'
   }, {
-    name: 'Index'
+    name: 'Survey'
   }],
   paths: {
     '/login': loginPath,
     '/surveys': surveysPath,
+    '/surveys/{surveyId}': deleteSurveysPath,
     '/signup': signUpPath,
     '/surveys/{surveyId}/results': surveyResultPath
   },
