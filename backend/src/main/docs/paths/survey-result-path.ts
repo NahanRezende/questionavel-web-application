@@ -1,6 +1,6 @@
 export const surveyResultPath = {
   put: {
-    tags: ['Index'],
+    tags: ['SurveyResult'],
     summary: 'API for create answer for survey',
     requestBody: {
       content: {
@@ -14,6 +14,14 @@ export const surveyResultPath = {
     parameters: [{
       in: 'path',
       name: 'surveyId',
+      required: true,
+      schema: {
+        type: 'string'
+      }
+    },
+    {
+      in: 'header',
+      name: 'x-access-token',
       required: true,
       schema: {
         type: 'string'
@@ -42,11 +50,19 @@ export const surveyResultPath = {
     }
   },
   get: {
-    tags: ['Index'],
+    tags: ['SurveyResult'],
     summary: 'API for read survey results',
     parameters: [{
       in: 'path',
       name: 'surveyId',
+      required: true,
+      schema: {
+        type: 'string'
+      }
+    },
+    {
+      in: 'header',
+      name: 'x-access-token',
       required: true,
       schema: {
         type: 'string'
