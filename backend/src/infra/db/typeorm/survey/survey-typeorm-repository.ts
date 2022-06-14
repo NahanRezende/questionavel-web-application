@@ -46,7 +46,7 @@ export default class SurveyTypeormRepository implements AddSurveyRepository, Loa
   async delete (id: string): Promise<void> {
     const repository = await TypeormHelper.getRepository(SurveyEntity)
 
-    const survey = await repository.findOne({ where: { id }, relations: ['answers'] })
+    const survey = await repository.findOne({ where: { id }, relations: ['answers', 'surveyResults'] })
 
     if (!survey) {
       throw new Error('Index not found')

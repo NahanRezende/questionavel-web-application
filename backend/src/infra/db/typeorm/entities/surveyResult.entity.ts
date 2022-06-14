@@ -25,6 +25,8 @@ export default class SurveyResultEntity implements ISurveyResultModel {
   @ManyToOne(() => AccountEntity, accounts => accounts.surveyResults)
   account: IAccountModel
 
-  @ManyToOne(() => SurveyEntity, survey => survey.surveyResults)
+  @ManyToOne(() => SurveyEntity, survey => survey.surveyResults, {
+    onDelete: 'CASCADE'
+  })
   survey: ISurveyModel
 }

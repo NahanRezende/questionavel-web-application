@@ -25,7 +25,7 @@ export default class SurveyEntity implements ISurveyModel {
   @OneToMany(() => SurveyAnswerEntity, surveyAnswer => surveyAnswer.survey, { cascade: true, onDelete: 'CASCADE' })
   answers: ISurveyAnswerModel[]
 
-  @OneToMany(() => SurveyResultEntity, surveyResult => surveyResult.survey, { onDelete: 'CASCADE' })
+  @OneToMany(() => SurveyResultEntity, surveyResult => surveyResult.survey, { cascade: true, onDelete: 'CASCADE' })
   surveyResults: ISurveyResultModel[]
 
   @ManyToOne(() => AccountEntity, account => account.surveys, {
