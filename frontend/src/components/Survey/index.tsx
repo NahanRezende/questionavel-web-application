@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import { Container, Results } from './styles';
+import { Container, Results, Result } from './styles';
 import api from '../../services/api';
 
 type Answer = {
@@ -24,6 +24,7 @@ type Props = {
 };
 
 type Results = {
+  question: string;
   answers: {
     id: string;
     answer: string;
@@ -56,14 +57,16 @@ const Survey = ({ survey }: Props): JSX.Element => {
 
   return (
     <Container>
-      {survey.question}
+      <h1>{survey.question}</h1>
       {survey.didAnswer ? (
         <Results>
           {results &&
             results.answers.map(r => (
-              <p>
-                {r.count}, {r.percent * 100}%
-              </p>
+              <Result>
+                <h2>{r.answer}</h2>
+                <p>{r.count} resposta(s)</p>
+                <p>{r.percent}%</p>
+              </Result>
             ))}
         </Results>
       ) : (
