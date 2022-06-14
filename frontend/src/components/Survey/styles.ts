@@ -8,6 +8,8 @@ export const Container = styled.div`
 export const Results = styled.div`
   padding: 16px;
   width: 100%;
+  max-height: 25vh;
+  overflow: auto;
 `;
 
 export const Result = styled.div`
@@ -22,6 +24,7 @@ export const TitleContainer = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 
   button {
     margin-left: 24px;

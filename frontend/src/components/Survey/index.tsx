@@ -72,12 +72,26 @@ const Survey = ({ survey }: Props): JSX.Element => {
     setAnswered(false);
   };
 
+  function getDefaultValue(): string {
+    if (!survey || survey.surveyResults) {
+      return '';
+    }
+
+    const target = survey.surveyResults.find(sr => sr.accountId === accountId);
+
+    if (target) {
+      return target.answer;
+    }
+
+    return '';
+  }
+
   return (
     <Container>
       <TitleContainer>
         <h1>{survey.question}</h1>
         {accountId === survey.accountId && (
-          <>
+          <div>
             <button type="button" onClick={handleDelete}>
               deletar
             </button>
@@ -86,7 +100,7 @@ const Survey = ({ survey }: Props): JSX.Element => {
                 editar
               </button>
             )}
-          </>
+          </div>
         )}
       </TitleContainer>
       {answered ? (
@@ -106,9 +120,7 @@ const Survey = ({ survey }: Props): JSX.Element => {
         survey.answers.map(a => (
           <RadioGroup
             onChange={() => handleAnswer(a)}
-            defaultValue={
-              survey.surveyResults.find(sr => sr.accountId === accountId).answer
-            }
+            defaultValue={getDefaultValue()}
           >
             <FormControlLabel
               key={a.answer}
