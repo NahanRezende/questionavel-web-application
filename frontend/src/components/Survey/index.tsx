@@ -90,18 +90,18 @@ const Survey = ({ survey }: Props): JSX.Element => {
     <Container>
       <TitleContainer>
         <h1>{survey.question}</h1>
-        {accountId === survey.accountId && (
-          <div>
+        <div>
+          {accountId === survey.accountId && (
             <button type="button" onClick={handleDelete}>
               deletar
             </button>
-            {answered && (
-              <button type="button" onClick={handleEdit}>
-                editar
-              </button>
-            )}
-          </div>
-        )}
+          )}
+          {answered && (
+            <button type="button" onClick={handleEdit}>
+              editar
+            </button>
+          )}
+        </div>
       </TitleContainer>
       {answered ? (
         <Results>
