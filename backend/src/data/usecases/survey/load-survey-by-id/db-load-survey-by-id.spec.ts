@@ -67,7 +67,7 @@ describe('DbLoadSurveys', () => {
     expect(loadAllSpy).toHaveBeenCalledWith('any_id')
   })
 
-  test('Should return Survey on success', async () => {
+  test('Should return Index on success', async () => {
     const { sut } = makeSut()
     const survey = await sut.loadById('any_id')
     expect(survey).toEqual(makeFakeSurvey())

@@ -37,7 +37,7 @@ export default {
   tags: [{
     name: 'Login'
   }, {
-    name: 'Survey'
+    name: 'Index'
   }],
   paths: {
     '/login': loginPath,

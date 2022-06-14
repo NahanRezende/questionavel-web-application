@@ -19,6 +19,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
+  accountId: string;
   isLogged: boolean;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
@@ -36,8 +37,8 @@ export const AuthProvider: React.FunctionComponent<Children> = ({
   children,
 }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@Survey:token');
-    const accountId = localStorage.getItem('@Survey:accountId');
+    const token = localStorage.getItem('@Index:token');
+    const accountId = localStorage.getItem('@Index:accountId');
 
     if (token) {
       api.defaults.headers['x-access-token'] = token;
@@ -64,21 +65,28 @@ export const AuthProvider: React.FunctionComponent<Children> = ({
 
           setData({ accountId: payload.id, token: accessToken });
 
-          localStorage.setItem('@Survey:token', accessToken);
-          localStorage.setItem('@Survey:accountId', payload.id);
+          localStorage.setItem('@Index:token', accessToken);
+          localStorage.setItem('@Index:accountId', payload.id);
         }
       });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@Survey:token');
-    localStorage.removeItem('@Survey:accountId');
+    localStorage.removeItem('@Index:token');
+    localStorage.removeItem('@Index:accountId');
 
     setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLogged: !!data.token, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{
+        accountId: data.accountId,
+        isLogged: !!data.token,
+        signIn,
+        signOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

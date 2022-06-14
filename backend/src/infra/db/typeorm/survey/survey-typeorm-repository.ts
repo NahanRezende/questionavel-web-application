@@ -49,7 +49,7 @@ export default class SurveyTypeormRepository implements AddSurveyRepository, Loa
     const survey = await repository.findOne({ where: { id }, relations: ['answers'] })
 
     if (!survey) {
-      throw new Error('Survey not found')
+      throw new Error('Index not found')
     }
 
     await repository.remove(survey)

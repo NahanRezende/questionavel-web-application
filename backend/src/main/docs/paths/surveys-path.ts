@@ -3,7 +3,7 @@ export const surveysPath = {
     security: [{
       apiKeyAuth: []
     }],
-    tags: ['Survey'],
+    tags: ['Index'],
     summary: 'API for list all surveys',
     responses: {
       200: {
@@ -31,7 +31,7 @@ export const surveysPath = {
     security: [{
       apiKeyAuth: []
     }],
-    tags: ['Survey'],
+    tags: ['Index'],
     summary: 'API for create a survey',
     requestBody: {
       content: {

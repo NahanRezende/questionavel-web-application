@@ -16,7 +16,7 @@ export class DbLoadSurveyResult implements LoadSurveyResult {
       const survey = await this.loadSurveyByIdRepository.loadById(surveyId)
 
       if (!survey) {
-        throw new Error('Survey not found')
+        throw new Error('Index not found')
       }
 
       surveyResult = {

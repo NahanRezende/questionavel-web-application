@@ -1,6 +1,6 @@
 export const surveyResultPath = {
   put: {
-    tags: ['Survey'],
+    tags: ['Index'],
     summary: 'API for create answer for survey',
     requestBody: {
       content: {
@@ -42,7 +42,7 @@ export const surveyResultPath = {
     }
   },
   get: {
-    tags: ['Survey'],
+    tags: ['Index'],
     summary: 'API for read survey results',
     parameters: [{
       in: 'path',

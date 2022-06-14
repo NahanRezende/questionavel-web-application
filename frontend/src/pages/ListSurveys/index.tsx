@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Container, InsideContainer } from './styles';
 import api from '../../services/api';
+import Survey from '../../components/Survey';
 
 interface ISurvey {
+  id: string;
   accountId: string;
   question: string;
+  surveyResults: {
+    answer: string;
+    accountId: string;
+  }[];
   answers: {
     answer: string;
   }[];
@@ -26,9 +32,7 @@ export const ListSurveys: React.FunctionComponent = () => {
   return (
     <Container>
       <InsideContainer>
-        {surveys.map(s => (
-          <h1>{s.question}</h1>
-        ))}
+        {surveys && surveys.map(s => <Survey survey={s} />)}
       </InsideContainer>
     </Container>
   );
