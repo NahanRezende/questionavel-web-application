@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import { Container, Results, Result } from './styles';
+import { Container, Results, Result, TitleContainer } from './styles';
 import api from '../../services/api';
+import Button from '../ButtonLogin';
+import { useAuth } from '../../hooks/auth';
 
 type Answer = {
   answer: string;
@@ -38,6 +40,12 @@ type Results = {
 const Survey = ({ survey }: Props): JSX.Element => {
   const [results, setResults] = useState<Results>();
 
+  const { accountId } = useAuth();
+
+  const handleDelete = useCallback(async () => {
+    await api.delete(`surveys/${survey.id}`);
+  }, [survey.id]);
+
   useEffect(() => {
     api
       .get(`surveys/${survey.id}/results`)
@@ -57,15 +65,24 @@ const Survey = ({ survey }: Props): JSX.Element => {
 
   return (
     <Container>
-      <h1>{survey.question}</h1>
+      <TitleContainer>
+        <h1>{survey.question}</h1>
+        {accountId === survey.accountId && (
+          <button type="button" onClick={handleDelete}>
+            deletar
+          </button>
+        )}
+      </TitleContainer>
       {survey.didAnswer ? (
         <Results>
           {results &&
             results.answers.map(r => (
               <Result>
-                <h2>{r.answer}</h2>
-                <p>{r.count} resposta(s)</p>
-                <p>{r.percent}%</p>
+                <div>
+                  <strong>{r.answer}</strong>
+                  <p>{r.count} resposta(s)</p>
+                  <p>{r.percent * 100}%</p>
+                </div>
               </Result>
             ))}
         </Results>

@@ -68,3 +68,10 @@ export const Label = styled.label`
   font-size: 1rem;
   text-align: start;
 `;
+
+export const ButtonsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;

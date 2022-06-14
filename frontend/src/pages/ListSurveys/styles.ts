@@ -13,7 +13,8 @@ export const Container = styled.div`
 export const InsideContainer = styled.div`
   margin-top: 2rem;
 
-  width: 50vw;
+  height: 90vh;
+  overflow: auto;
 
   background: #f3f3f3;
   padding: 16px 20px;
@@ -21,7 +22,4 @@ export const InsideContainer = styled.div`
   border-width: 0.1rem;
   border-color: #4682b4;
   border-radius: 6px;
-
-  display: flex;
-  flex-direction: column;
 `;

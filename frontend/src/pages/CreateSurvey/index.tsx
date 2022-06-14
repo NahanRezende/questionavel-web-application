@@ -15,6 +15,7 @@ import {
   AddButton,
   Label,
   StyledInput,
+  ButtonsContainer,
 } from './styles';
 import api from '../../services/api';
 
@@ -113,15 +114,19 @@ export const CreateSurvey: React.FC = () => {
               />
             </>
           ))}
-          <AddButton onClick={handleAddAnswer}>
-            <AiOutlinePlusSquare />
-          </AddButton>
-          <AddButton onClick={handleRemoveAnswer}>
-            <AiOutlineMinusSquare />
-          </AddButton>
-          <AddButton type="submit">
-            <AiOutlineCheckSquare />
-          </AddButton>
+          <ButtonsContainer>
+            <div>
+              <AddButton type="button" onClick={handleAddAnswer}>
+                <AiOutlinePlusSquare />
+              </AddButton>
+              <AddButton type="button" onClick={handleRemoveAnswer}>
+                <AiOutlineMinusSquare />
+              </AddButton>
+            </div>
+            <AddButton type="submit">
+              <AiOutlineCheckSquare />
+            </AddButton>
+          </ButtonsContainer>
         </InsideContainer>
       </Form>
     </Container>
