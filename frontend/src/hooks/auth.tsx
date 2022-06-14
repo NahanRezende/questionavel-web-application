@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState,
+} from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import api from '../services/api';
 
@@ -22,7 +28,13 @@ export const AuthContext = createContext<AuthContextData>(
   {} as AuthContextData,
 );
 
-export const AuthProvider: React.FC = ({ children }) => {
+interface Children {
+  children: ReactNode;
+}
+
+export const AuthProvider: React.FunctionComponent<Children> = ({
+  children,
+}) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@Survey:token');
     const accountId = localStorage.getItem('@Survey:accountId');

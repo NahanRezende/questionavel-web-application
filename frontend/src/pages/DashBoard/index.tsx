@@ -12,7 +12,7 @@ export const DashBoard: React.FC = () => {
   };
 
   const handleList = () => {
-    history.push('/list-survey');
+    history.push('/list-surveys');
   };
 
   return (

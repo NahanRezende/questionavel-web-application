@@ -92,7 +92,6 @@ export default createGlobalStyle`
 
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px brightness(0.8);
     border-radius: 10px;
   }
 

@@ -27,7 +27,6 @@ export const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: red;
 
   flex-wrap: wrap;
   width: 30rem;
@@ -119,7 +118,6 @@ export const Back = styled.div`
     font-weight: 500;
     font-size: 0.9rem;
 
-    transform: color 0.2s;
     text-align: center;
   }
 `;

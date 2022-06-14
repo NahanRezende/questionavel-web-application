@@ -7,7 +7,7 @@ import { Login } from '../pages/Login';
 import { CreateAccount } from '../pages/CreateAccount';
 import { DashBoard } from '../pages/DashBoard';
 import { CreateSurvey } from '../pages/CreateSurvey';
-import { Survey } from '../pages/Survey';
+import { ListSurveys } from '../pages/ListSurveys';
 
 const Routes: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const Routes: React.FC = () => {
       <Switch>
         <Route path="/" exact component={Login} />
         <Route path="/create-survey" exact component={CreateSurvey} isPrivate />
-        <Route path="/survey" exact component={Survey} isPrivate />
+        <Route path="/list-surveys" exact component={ListSurveys} isPrivate />
         <Route path="/create-account" exact component={CreateAccount} />
         <Route path="/dashboard" exact component={DashBoard} isPrivate />
       </Switch>
