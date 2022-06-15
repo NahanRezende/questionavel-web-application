@@ -31,6 +31,7 @@ const makeAccessToken = async (): Promise<string[]> => {
 
 describe('Surveys Routes', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     MockDate.set(new Date())
     await TypeormHelper.connect()
   })

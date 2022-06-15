@@ -37,6 +37,7 @@ let surveyResultRepository: Repository<SurveyResultEntity>
 
 describe('Account Typeorm Repository', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     MockDate.set(new Date())
     await TypeormHelper.connect()
   })

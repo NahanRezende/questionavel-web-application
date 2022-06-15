@@ -7,6 +7,7 @@ let repository: Repository<AccountEntity>
 
 describe('Account TypeOrm Repository', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     await TypeormHelper.connect()
   })
 

@@ -9,6 +9,7 @@ let accountRepository: Repository<AccountEntity>
 
 describe('Signup Routes', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     await TypeormHelper.connect()
   })
 

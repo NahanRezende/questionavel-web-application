@@ -9,6 +9,7 @@ let logRepository: Repository<LogEntity>
 
 describe('Log Mongo Repository', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     await TypeormHelper.connect()
   })
 

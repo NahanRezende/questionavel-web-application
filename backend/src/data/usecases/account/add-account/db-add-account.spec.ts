@@ -74,6 +74,7 @@ const makeSut = (): SutTypes => {
 
 describe('DbAddAccount Usecase', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     MockDate.set(new Date())
     await TypeormHelper.connect()
   })

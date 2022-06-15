@@ -1,22 +1,28 @@
 import { DataSource, EntityTarget, Repository } from 'typeorm'
-import dataSource from '../ormconfig'
+import getDatasource from '../datasource'
 
 class TypeormHelper {
+  private datasource = getDatasource()
+
+  changeEnv(env: string): void {
+    this.datasource = getDatasource(env)
+  }
+
   async connect (): Promise<void> {
-    await dataSource.initialize()
+    await this.datasource.initialize()
   }
 
   async getConnection (): Promise<DataSource> {
-    return dataSource
+    return this.datasource
   }
 
   async getRepository<E>(entity: EntityTarget<E>): Promise<Repository<E>> {
-    return dataSource.getRepository(entity)
+    return this.datasource.getRepository(entity)
   }
 
   async disconnect (): Promise<void> {
-    if (dataSource.isInitialized) {
-      await dataSource.destroy()
+    if (this.datasource.isInitialized) {
+      await this.datasource.destroy()
     }
   }
 }

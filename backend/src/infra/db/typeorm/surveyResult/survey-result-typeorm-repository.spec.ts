@@ -41,6 +41,7 @@ const makeFakeAccountId = async (): Promise<string> => {
 
 describe('Account Mongo Repository', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     MockDate.set(new Date())
     await TypeormHelper.connect()
   })

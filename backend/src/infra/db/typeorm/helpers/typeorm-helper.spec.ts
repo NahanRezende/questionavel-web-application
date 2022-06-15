@@ -2,6 +2,7 @@ import TypeormHelper from './typeorm-helper'
 
 describe('Typeorm helper', () => {
   beforeAll(async () => {
+    TypeormHelper.changeEnv('test')
     await TypeormHelper.connect()
   })
 
