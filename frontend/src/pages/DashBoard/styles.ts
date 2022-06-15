@@ -17,7 +17,7 @@ export const Logo = styled.img`
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 800;
   font-family: 'Poppins', monospace;
   text-align: center;
@@ -43,8 +43,8 @@ export const SecondDescription = styled.p`
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 0.8rem;
-  width: 40rem;
+  margin-top: 1rem;
+  width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;

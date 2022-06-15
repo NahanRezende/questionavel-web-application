@@ -24,6 +24,10 @@ export const DashBoard: React.FC = () => {
     history.push('/list-surveys');
   };
 
+  const handleListOwn = () => {
+    history.push('/your-surveys');
+  };
+
   return (
     <Container>
       <Logo src={MainLogo} />
@@ -41,6 +45,9 @@ export const DashBoard: React.FC = () => {
         </Button>
         <Button type="button" onClick={handleList}>
           listar
+        </Button>
+        <Button type="button" onClick={handleListOwn}>
+          seus surveys
         </Button>
         <Button type="button" onClick={signOut}>
           trocar conta

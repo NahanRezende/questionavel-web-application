@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import {
   AiOutlineCheckSquare,
+  AiOutlineCloseSquare,
   AiOutlineMinusSquare,
   AiOutlinePlusSquare,
 } from 'react-icons/all';
@@ -46,6 +47,10 @@ export const CreateSurvey: React.FC = () => {
       },
     ],
   });
+
+  const handleReturn = () => {
+    history.push('/dashboard');
+  };
 
   const handleAddAnswer = () => {
     const lastAnswer = survey.answers.slice(-1)[0];
@@ -123,9 +128,14 @@ export const CreateSurvey: React.FC = () => {
                 <AiOutlineMinusSquare color="#F7FEFF" />
               </AddButton>
             </div>
-            <AddButton type="submit">
-              <AiOutlineCheckSquare color="#F7FEFF" />
-            </AddButton>
+            <div>
+              <AddButton type="button">
+                <AiOutlineCloseSquare color="#FF0000" onClick={handleReturn} />
+              </AddButton>
+              <AddButton type="submit">
+                <AiOutlineCheckSquare color="#00FF00" />
+              </AddButton>
+            </div>
           </ButtonsContainer>
         </InsideContainer>
       </Form>

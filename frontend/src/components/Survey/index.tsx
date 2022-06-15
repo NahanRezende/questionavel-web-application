@@ -45,12 +45,6 @@ const Survey = ({ survey }: Props): JSX.Element => {
   const { accountId } = useAuth();
   const history = useHistory();
 
-  const handleDelete = useCallback(async () => {
-    await api.delete(`surveys/${survey.id}`);
-
-    history.push('/dashboard');
-  }, [history, survey.id]);
-
   useEffect(() => {
     api
       .get(`surveys/${survey.id}/results`)
@@ -90,13 +84,8 @@ const Survey = ({ survey }: Props): JSX.Element => {
   return (
     <Container>
       <TitleContainer>
-        <h1>{survey.question}</h1>
+        <h2>{survey.question}</h2>
         <div>
-          {accountId === survey.accountId && (
-            <button type="button" onClick={handleDelete}>
-              <TbTrashX color="red" />
-            </button>
-          )}
           {answered && (
             <button type="button" onClick={handleEdit}>
               <TbEditCircleOff color="#2A475E" />
