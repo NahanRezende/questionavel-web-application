@@ -1,6 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Logo, Title, Description, ButtonContainer } from './styles';
+import {
+  Container,
+  Logo,
+  Title,
+  Description,
+  ButtonContainer,
+  SecondDescription,
+} from './styles';
 import MainLogo from '../../assets/main_logo.png';
 import Button from '../../components/ButtonLogin';
 import { useAuth } from '../../hooks/auth';
@@ -25,6 +32,9 @@ export const DashBoard: React.FC = () => {
         Um aplicativo simples que permite que você crie livremente uma pesquisa
         ou responda a uma das muitas pesquisas que temos.
       </Description>
+      <SecondDescription>
+        Comece a gastar seu tempo de forma inútil agora mesmo.
+      </SecondDescription>
       <ButtonContainer>
         <Button type="button" onClick={handleCreate}>
           criar

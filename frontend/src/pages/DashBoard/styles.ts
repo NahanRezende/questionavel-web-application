@@ -33,6 +33,15 @@ export const Description = styled.p`
   color: #f7feff;
 `;
 
+export const SecondDescription = styled.p`
+  font-size: 1rem;
+  font-weight: 200;
+  font-family: 'Poppins', monospace;
+  text-align: center;
+  margin-top: 0.3rem;
+  color: #f7feff;
+`;
+
 export const ButtonContainer = styled.div`
   margin-top: 0.8rem;
   width: 40rem;
