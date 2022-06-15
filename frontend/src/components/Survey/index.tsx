@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { TbEditCircleOff, TbTrashX } from 'react-icons/all';
 import { Container, Results, Result, TitleContainer } from './styles';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
@@ -93,12 +94,12 @@ const Survey = ({ survey }: Props): JSX.Element => {
         <div>
           {accountId === survey.accountId && (
             <button type="button" onClick={handleDelete}>
-              deletar
+              <TbTrashX color="red" />
             </button>
           )}
           {answered && (
             <button type="button" onClick={handleEdit}>
-              editar
+              <TbEditCircleOff color="#2A475E" />
             </button>
           )}
         </div>

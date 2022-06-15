@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background: #c7eff7;
+  background: #171a21;
 
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@ export const InsideContainer = styled.div`
   height: 90vh;
   overflow: auto;
 
-  background: #f3f3f3;
+  background: #f7feff;
   padding: 16px 20px;
   border: solid;
   border-width: 0.1rem;

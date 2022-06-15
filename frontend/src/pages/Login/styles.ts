@@ -9,7 +9,7 @@ export const Content = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: #4682b4;
+  background: #171a21;
 
   background-blend-mode: multiply;
 
@@ -30,7 +30,7 @@ export const LoginContainer = styled.div`
 
   padding: 2.25rem;
 
-  background: #f3f3f3;
+  background: #2a475e;
   border-radius: 0.625rem;
   box-shadow: 0.625rem 0.625rem 0.25rem rgba(0, 0, 0, 0.25);
 
@@ -76,7 +76,6 @@ export const Text = styled.p`
   font-weight: 500;
   font-size: 0.7rem;
 
-  transform: color 0.2s;
   text-align: center;
 `;
 

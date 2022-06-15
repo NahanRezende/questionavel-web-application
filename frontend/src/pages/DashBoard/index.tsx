@@ -20,8 +20,11 @@ export const DashBoard: React.FC = () => {
   return (
     <Container>
       <Logo src={MainLogo} />
-      <Title>Pesquise</Title>
-      <Description>Crie ou responda a Surveys existentes.</Description>
+      <Title>Questionável</Title>
+      <Description>
+        Um aplicativo simples que permite que você crie livremente uma pesquisa
+        ou responda a uma das muitas pesquisas que temos.
+      </Description>
       <ButtonContainer>
         <Button type="button" onClick={handleCreate}>
           criar

@@ -11,7 +11,7 @@ export const Button = styled.button`
   gap: 0.5rem;
   border-radius: 0.625rem;
 
-  background: #4682b4;
+  background: #1b2838;
   border: none;
   color: white;
 

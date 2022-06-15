@@ -50,15 +50,15 @@ export default createGlobalStyle`
   }
 
   button {
+    background: none;
     cursor: pointer;
     border: none;
     padding: 4px;
     border-radius: 4px;
-    background: #80deea;
-    color: #fafafa;
 
-    :hover {
-      background: #4dd0e1;
+    svg {
+      width: 3rem;
+      height: 3rem;
     }
   }
 

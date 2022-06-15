@@ -117,14 +117,14 @@ export const CreateSurvey: React.FC = () => {
           <ButtonsContainer>
             <div>
               <AddButton type="button" onClick={handleAddAnswer}>
-                <AiOutlinePlusSquare color="#292929" />
+                <AiOutlinePlusSquare color="#F7FEFF" />
               </AddButton>
               <AddButton type="button" onClick={handleRemoveAnswer}>
-                <AiOutlineMinusSquare color="#292929" />
+                <AiOutlineMinusSquare color="#F7FEFF" />
               </AddButton>
             </div>
             <AddButton type="submit">
-              <AiOutlineCheckSquare color="#4682b4" />
+              <AiOutlineCheckSquare color="#F7FEFF" />
             </AddButton>
           </ButtonsContainer>
         </InsideContainer>

@@ -26,6 +26,8 @@ export const TitleContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  color: #1b2838;
+
   button {
     margin-left: 24px;
   }

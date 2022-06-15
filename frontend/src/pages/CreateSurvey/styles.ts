@@ -4,7 +4,7 @@ import Input from '../../components/Input';
 export const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background: #c7eff7;
+  background: #171a21;
 
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@ export const InsideContainer = styled.div`
 
   width: 50vw;
 
-  background: #f3f3f3;
+  background: #2a475e;
   padding: 16px 20px;
   border: solid;
   border-width: 0.1rem;
@@ -41,18 +41,18 @@ export const AddButton = styled.button`
 export const QuestionTitle = styled.p`
   font-size: 1.5rem;
   font-weight: 800;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Poppins', monospace;
   text-align: center;
-  color: #4682b4;
+  color: #f7feff;
   margin-bottom: 2rem;
 `;
 
 export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 800;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Poppins', monospace;
   text-align: center;
-  color: #4682b4;
+  color: #f7feff;
   margin-top: 5rem;
 `;
 
@@ -62,8 +62,8 @@ export const StyledInput = styled(Input)`
 `;
 
 export const Label = styled.label`
-  color: #4682b4;
-  font-family: 'Poppins', sans-serif;
+  color: #f7feff;
+  font-family: 'Poppins', monospace;
   font-weight: 300;
   font-size: 1rem;
   text-align: start;
