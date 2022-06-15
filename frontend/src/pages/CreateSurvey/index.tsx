@@ -109,7 +109,9 @@ export const CreateSurvey: React.FC = () => {
           <QuestionTitle>Respostas</QuestionTitle>
           {survey.answers.map((answer, index) => (
             <>
-              <Label htmlFor={`${index}`}>Resposta</Label>
+              <Label htmlFor={`${index}`} key={`label${answer.domId}`}>
+                Resposta
+              </Label>
               <StyledInput
                 type="text"
                 id={`${index}`}

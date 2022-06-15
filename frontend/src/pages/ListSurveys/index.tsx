@@ -49,7 +49,7 @@ export const ListSurveys: React.FunctionComponent = () => {
       </Counter>
       {surveys ? (
         <InsideContainer>
-          {surveys && surveys.map(s => <Survey survey={s} />)}
+          {surveys && surveys.map(s => <Survey survey={s} key={s.id} />)}
         </InsideContainer>
       ) : (
         <InsideContainer>

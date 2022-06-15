@@ -45,7 +45,7 @@ export const YourSurveys = (): JSX.Element => {
         );
       })
       .catch(error => console.error(error));
-  }, []);
+  }, [accountId]);
 
   return (
     <Container>
@@ -57,7 +57,7 @@ export const YourSurveys = (): JSX.Element => {
       </Counter>
       {surveys ? (
         <InsideContainer>
-          {surveys && surveys.map(s => <SurveyResult survey={s} />)}
+          {surveys && surveys.map(s => <SurveyResult survey={s} key={s.id} />)}
         </InsideContainer>
       ) : (
         <InsideContainer>

@@ -67,7 +67,7 @@ const SurveyResult = ({ survey }: Props): JSX.Element => {
       <Results>
         {results &&
           results.answers.map(r => (
-            <Result>
+            <Result key={r.id}>
               <div>
                 <strong>{r.answer}</strong>
                 <p>{r.count} resposta(s)</p>
