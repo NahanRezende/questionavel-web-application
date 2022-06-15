@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-  margin-top: 15rem;
+  margin-top: 15vh;
   margin-bottom: 1rem;
   width: 15rem;
 `;
